@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>75 Day Mindful Muscle Challenge</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Mindful strength journey</p>
+          <h1>75 Day Muscle & Calm Challenge</h1>
+        </div>
+        <div class="clock-panel">
+          <span class="mini-label">Local time</span>
+          <strong id="clock">--:--:--</strong>
+        </div>
+      </header>
+
+      <main class="layout">
+        <aside class="panel left-panel">
+          <section class="card">
+            <h2>Welcome</h2>
+            <form id="loginForm" class="login-form">
+              <label>
+                Your name
+                <input id="participantName" type="text" placeholder="Enter your name" maxlength="32" required />
+              </label>
+              <label>
+                Start with
+                <select id="preferredStart">
+                  <option value="activity">Activity first</option>
+                  <option value="meditation">Meditation first</option>
+                </select>
+              </label>
+              <button type="submit" class="primary-btn">Log in</button>
+            </form>
+            <div class="login-summary">
+              <div>
+                <span class="stat-label">Login count</span>
+                <strong id="loginCount">0</strong>
+              </div>
+              <div>
+                <span class="stat-label">Member</span>
+                <strong id="currentUser">Guest</strong>
+              </div>
+            </div>
+          </section>
+
+          <section class="card">
+            <h2>Challenge stats</h2>
+            <div class="stat-grid">
+              <div class="mini-stat"><span>Current day</span><strong id="currentDayStat">1</strong></div>
+              <div class="mini-stat"><span>Days left</span><strong id="daysLeftStat">75</strong></div>
+              <div class="mini-stat"><span>Completion</span><strong id="completionStat">0%</strong></div>
+              <div class="mini-stat"><span>Daily reset</span><strong id="dailyReset">24h</strong></div>
+            </div>
+          </section>
+
+          <section class="card">
+            <h2>Meditation timer</h2>
+            <div class="timer-box">
+              <div id="meditationTime">10:00</div>
+              <label class="range-wrap"><span>Minutes</span><input id="meditationMinutes" type="range" min="5" max="25" step="1" value="10" /></label>
+              <div class="timer-actions">
+                <button id="startMeditation" class="primary-btn" type="button">Start</button>
+                <button id="resetMeditation" class="secondary-btn" type="button">Reset</button>
+              </div>
+            </div>
+          </section>
+        </aside>
+
+        <section class="content-panel">
+          <section class="card hero-card">
+            <div><p class="eyebrow accent">Daily focus</p><h2 id="heroTitle">Day 1: Legs + power</h2></div>
+            <div class="challenge-pill" id="challengeType">Workout day</div>
+          </section>
+
+          <section class="card plan-card">
+            <div class="section-header"><h3>Today's plan</h3><button id="markComplete" class="primary-btn small-btn" type="button">Mark completed</button></div>
+            <div id="todayPlan" class="today-plan"></div>
+          </section>
+
+          <section class="card">
+            <div class="section-header"><h3>Progress chart</h3></div>
+            <canvas id="progressChart" width="780" height="220"></canvas>
+          </section>
+
+          <section class="card two-column">
+            <div>
+              <div class="section-header"><h3>Participants</h3></div>
+              <form id="participantForm" class="inline-form">
+                <input id="newParticipantName" type="text" placeholder="Add participant" maxlength="32" aria-label="Participant name" />
+                <button type="submit" class="secondary-btn">Add</button>
+              </form>
+              <ul id="participantList" class="participant-list"></ul>
+            </div>
+            <div>
+              <div class="section-header"><h3>Extra resource links</h3></div>
+              <form id="resourceForm" class="inline-form">
+                <input id="resourceTitle" type="text" placeholder="Label" maxlength="36" aria-label="Resource label" />
+                <input id="resourceUrl" type="url" placeholder="Paste a direct https:// link" aria-label="Resource URL" />
+                <button type="submit" class="secondary-btn">Save</button>
+              </form>
+              <div id="resourceList" class="resource-list"></div>
+            </div>
+          </section>
+
+          <section class="card editor-card">
+            <div class="section-header"><div><p class="eyebrow accent">Editor tools</p><h3>Assign direct workout & meditation videos</h3></div></div>
+            <p class="editor-hint">Paste the actual video URL (for example, a YouTube watch or youtu.be link). Participants will get a direct link in today's plan—no search results pages.</p>
+            <form id="videoEditorForm" class="video-editor-form">
+              <label>Plan slot
+                <select id="videoActivity">
+                  <option value="legs">Monday · Legs</option>
+                  <option value="cardio">Tuesday · Cardio</option>
+                  <option value="pushups">Wednesday · Push-ups</option>
+                  <option value="abs">Thursday · Abs</option>
+                  <option value="planks">Friday · Planks</option>
+                  <option value="squats">Saturday · Quads & squats</option>
+                  <option value="rest">Sunday · Recovery</option>
+                  <option value="meditation">Daily · Meditation</option>
+                </select>
+              </label>
+              <label>Video label
+                <input id="videoTitle" type="text" placeholder="e.g. Beginner no-equipment leg workout" maxlength="60" required />
+              </label>
+              <label>Direct video URL
+                <input id="videoUrl" type="url" placeholder="https://www.youtube.com/watch?v=..." required />
+              </label>
+              <button type="submit" class="primary-btn">Save video for this slot</button>
+              <p id="videoEditorStatus" class="editor-status" role="status" aria-live="polite"></p>
+            </form>
+          </section>
+
+          <section class="card">
+            <div class="section-header"><h3>75-day schedule</h3></div>
+            <div id="challengeCalendar" class="calendar-grid"></div>
+          </section>
+        </section>
+      </main>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

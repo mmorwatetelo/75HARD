@@ -1,0 +1,42 @@
+
+.video-link {
+  display: inline-flex;
+  margin-top: 8px;
+  color: #7bf1c6;
+  text-decoration: none;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.video-link:hover,
+.resource-item:hover {
+  color: #b7ffe7;
+  text-decoration: underline;
+}
+
+.video-missing {
+  color: #aabbd4;
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+
+.editor-card {
+  border-color: rgba(123, 241, 198, 0.24);
+}
+
+.editor-hint {
+  color: #b6c8e3;
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+
+.video-editor-form {
+  display: grid;
+  gap: 14px;
+}
+
+.editor-status {
+  color: #7bf1c6;
+  min-height: 1.2em;
+  margin: 0;
+}
